@@ -1,0 +1,20 @@
+
+/etc/apache2/
+|-- apache2.conf
+|       `--  ports.conf
+|-- mods-enabled
+|       |-- *.load
+|       `-- *.conf
+|-- conf-enabled
+|       `-- *.conf
+|-- sites-enabled
+|       `-- *.conf
+* apache2.conf是主要的配置文件。它通过在启动Web服务器时包含所有剩余的配置文件将这些部分放在一起。
+* ports.conf始终包含在主配置文件中。它用于确定传入连接的侦听端口，并且该文件可以随时自定义。
+* 在配置文件中/启用MODS- ， 启用CONF-/和启用的站点- /目录中分别含有管理模块的特定配置片段，全局配置片段，或虚拟主机配置。
+* 它们通过从各自的*可用/对应的可用配置文件进行符号化来激活。这些应通过使用我们的帮手来管理 a2enmod，a2dismod， a2ensite， a2dissite， 并 a2enconf， a2disconf。有关详细信息，请参阅各自的手册页。
+* 二进制文件被称为apache2。由于使用环境变量，在默认配置中，需要使用/etc/init.d/apache2或apache2ctl来启动/停止a pache2 。 直接调用/ usr / bin / apache2将无法使用默认配置。
+
+文档根源
+默认情况下，Ubuntu的不允许通过Web浏览器访问 任何文件，除了那些位于中的/ var / WWW， 的public_html目录（当启用），并在/ usr /股（web应用程序）。如果您的站点正在使用位于其他位置的Web文档根目录（例如/ srv），则可能需要在/etc/apache2/apache2.conf中将您的文档根目录白名单。
+默认的Ubuntu文档根目录是/ var / www / html。您可以在/ var / www下创建自己的虚拟主机。这与以前的版本不同，它提供了更好的安全性。
